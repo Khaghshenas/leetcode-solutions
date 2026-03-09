@@ -3,7 +3,7 @@ class Solution:
         m, n = len(s), len(p)
         dp = [[False] * (n+1) for _ in range(m+1)]
         dp[m][n] = True
-
+        #dp[i][j] = True if s[i:] matches p[j:]
         for i in range(m, -1, -1):
             for j in range(n-1, -1, -1):
                 first_match = i < m and (s[i] == p[j] or p[j] == '.')
