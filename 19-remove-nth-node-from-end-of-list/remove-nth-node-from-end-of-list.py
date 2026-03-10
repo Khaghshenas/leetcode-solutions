@@ -8,20 +8,18 @@ class Solution:
         nodes = []
         curr = head
 
-        # store nodes in list
         while curr:
             nodes.append(curr)
             curr = curr.next
 
         l = len(nodes)
-        remove_index = l - n
 
-        if remove_index == 0:
+        if (l-n)==0:
             return head.next
+        
+        nodes[l-n-1].next = nodes[l-n].next
 
-        prev = nodes[remove_index - 1]
-        prev.next = nodes[remove_index].next
 
-        return head
+        return head 
         
         
