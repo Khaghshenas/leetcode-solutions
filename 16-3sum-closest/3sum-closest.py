@@ -17,7 +17,7 @@ class Solution:
                         min_distance_sum = total
 
                 if total==target:
-                    break
+                    return total
                 elif total<target:
                     left += 1
                 else:
