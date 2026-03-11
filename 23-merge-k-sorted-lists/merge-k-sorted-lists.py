@@ -26,30 +26,17 @@ class Solution:
         dummy = ListNode(0)
         tail = dummy
 
-        while left or right:
-            if left and right and left.val<=right.val:
-                node = ListNode(left.val)
-                tail.next = node
-                tail = tail.next
+        while left and right:
+            if left.val<=right.val:
+                tail.next = left
                 left = left.next
-            elif left and right and left.val>right.val:
-                node = ListNode(right.val)
-                tail.next = node
-                tail = tail.next
-                right = right.next
-            elif left:
-                while left:
-                    node = ListNode(left.val)
-                    tail.next = node
-                    tail = tail.next
-                    left = left.next
             else:
-                while right:
-                    node = ListNode(right.val)
-                    tail.next = node
-                    tail = tail.next
-                    right = right.next
-        
+                tail.next = right
+                right = right.next
+            
+            tail = tail.next
+        tail.next = left if left else right
+
         return dummy.next
 
 
