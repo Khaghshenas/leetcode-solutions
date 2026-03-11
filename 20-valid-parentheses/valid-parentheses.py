@@ -6,7 +6,7 @@ class Solution:
         stack = []
         pairs = {'(':')', '{':'}', '[':']'}
 
-        for i, c in enumerate(s):
+        for c in s:
 
             if c in pairs:
                 stack.append(c)
@@ -20,10 +20,7 @@ class Solution:
             else:
                 return False
 
-        if stack:
-            return False
-        else:
-            return True
+        return not stack
 
 
         
