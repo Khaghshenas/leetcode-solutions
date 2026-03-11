@@ -4,21 +4,22 @@ class Solution:
             return False
 
         stack = []
-        opening = "({["
-        closing = ")}]"
+        pairs = {'(':')', '{':'}', '[':']'}
+
         for i, c in enumerate(s):
 
-            if c in opening:
+            if c in pairs:
                 stack.append(c)
                 continue
             elif stack:
                 c_1 = stack.pop()
-                if c_1=='(' and c==')' or c_1=='{' and c=='}' or c_1=='[' and c==']':
+                if pairs[c_1]==c:
                     continue
                 else:
                     return False
             else:
                 return False
+
         if stack:
             return False
         else:
