@@ -15,27 +15,24 @@ class Solution:
         left = self.mergeKLists(lists[:mid])
         right = self.mergeKLists(lists[mid:])
 
-        return self.two_merge(left, right) 
+        return self.merge_two(left, right)
     
-    def two_merge(self, left: ListNode, right: ListNode) -> ListNode:
-        if not left:
-            return right
-        if not right:
-            return left
-        
+    def merge_two(self, l1: [ListNode], l2: [ListNode]) -> ListNode:
+
         dummy = ListNode(0)
         tail = dummy
 
-        while left and right:
-            if left.val<=right.val:
-                tail.next = left
-                left = left.next
+        while l1 and l2:
+            if l1.val<=l2.val:
+                tail.next = l1
+                l1 = l1.next
             else:
-                tail.next = right
-                right = right.next
+                tail.next = l2
+                l2 = l2.next
             
             tail = tail.next
-        tail.next = left if left else right
+        
+        tail.next = l1 if l1 else l2
 
         return dummy.next
 
