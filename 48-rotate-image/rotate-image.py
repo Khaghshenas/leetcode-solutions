@@ -32,4 +32,6 @@ class Solution:
                 # replace right col with top 
                 matrix[i][last] = top
 
+#return [list(reversed(col)) for col in zip(*matrix)]
+
         
