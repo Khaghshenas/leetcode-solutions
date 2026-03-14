@@ -7,12 +7,12 @@ class Solution:
         max_profit = 0
         
 
-        for p in range(1, len(prices)):
+        for p in prices[1:]:
 
-            if (prices[p] - min_price) > max_profit:
-                max_profit = prices[p] - min_price
-            if prices[p] < min_price:
-                min_price = prices[p]
+            profit = p - min_price
+            max_profit = max(max_profit, (p - min_price))
+            if p < min_price:
+                min_price = p
         
         return max_profit
 
