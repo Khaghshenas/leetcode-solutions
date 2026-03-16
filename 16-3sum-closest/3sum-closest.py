@@ -2,32 +2,28 @@ class Solution:
     def threeSumClosest(self, nums: list[int], target: int) -> int:
         
         nums.sort()
-        n = len(nums)
-        min_distance = float('inf')
-        current_sum = nums[0] + nums[1] + nums[2]
+        closest_sum = nums[0] + nums[1] + nums[2]
 
-        for i in range(n-2):
-            
-            left, right = i + 1, n - 1
-
+        for i in range(len(nums) - 2):
+            left, right = i + 1, len(nums) - 1
 
             while left < right:
                 total = nums[i] + nums[left] + nums[right]
-                distance = abs(total - target)
-                
-                if distance < min_distance:
-                    min_distance = distance
-                    current_sum = total
+
+                # If this sum is closer to target, update closest_sum
+                if abs(total - target) < abs(closest_sum - target):
+                    closest_sum = total
+
+                # Move pointers based on comparison with target
+                if total < target:
+                    left += 1
+                elif total > target:
+                    right -= 1
                 else:
-                    if total < target:
-                        left += 1
-                    elif total > target:
-                        right -= 1
-                    else:
-                        return total   
-                
-        
-        return current_sum
+                    # Exact match found
+                    return total
+
+        return closest_sum
 
 
             
