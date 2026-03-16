@@ -22,10 +22,8 @@ class Solution:
             else:
                 return False
         
-        if len(stack)>0:
-            return False
         
-        return True
+        return False if len(stack)>0 else True
 
             
         
