@@ -15,9 +15,7 @@ class Solution:
             
             elif stack: # closing
                 c_1 = stack.pop()
-                if pairs[c_1]==c:
-                    pass
-                else:
+                if pairs[c_1]!=c:
                     return False
             else:
                 return False
