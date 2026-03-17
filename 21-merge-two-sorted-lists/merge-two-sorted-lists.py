@@ -9,7 +9,7 @@ class Solution:
             return list2
         if not list2:
             return list1
-        
+
         dummy = ListNode(0)
         tail = dummy
 
@@ -20,10 +20,20 @@ class Solution:
             else:
                 tail.next = list2
                 list2 = list2.next
+            
             tail = tail.next
-
-        tail.next = list1 if list1 else list2
+        
+        if list1:
+            while list1:
+                tail.next = list1
+                list1 = list1.next
+                tail = tail.next
+        if list2:
+            while list2:
+                tail.next = list2
+                list2 = list2.next
+                tail = tail.next
+        
         return dummy.next
 
 
-        
