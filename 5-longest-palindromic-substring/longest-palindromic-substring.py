@@ -6,22 +6,30 @@ class Solution:
             return s
 
         longest = ""
+        for i in range(n):
 
-        for i in range(n-1):
-            for j in range(i, n):
-                s_1 = s[i:j+1]
+            l = r = i
+            
+            while l >= 0 and r < n and s[l] == s[r]: 
+                longest = s[l:r+1] if (r - l + 1) > len(longest) else longest
+                l -= 1
+                r += 1
 
-                """l, r = i, j
-                while (l < r):
-                    if s[l] != s[r]:
-                        break
-                    l += 1
-                    r -= 1
-                    """
-                if s_1 == s_1[::-1]:    
-                    longest = s_1 if len(s_1) > len(longest) else longest
+            l, r = i, i + 1
+            while l >= 0 and r < n and s[l] == s[r]:
+                longest = s[l:r+1] if (r - l + 1) > len(longest) else longest
+                l -= 1
+                r += 1
+            
         
         return longest
 
-        
+
+
+
+
+
+
+
+        return longest
 
