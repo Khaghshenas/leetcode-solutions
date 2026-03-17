@@ -3,11 +3,14 @@ class Solution:
         if x < 0:
             return False
         
-        #x_1 = 0
-        #while x:
-        #    d = x%10
-        #    x //= 10
-        #    x_1 = 
-        s = str(x)
-        return s == s[::-1]
+        x_1 = 0
+        decimal = 0
+        num = x
+
+        while num:
+            x_1 = x_1*10 +num%10
+            num //= 10
+        
+        return x == x_1
+        
         
