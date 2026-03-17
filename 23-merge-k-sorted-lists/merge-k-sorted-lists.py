@@ -6,22 +6,37 @@
 import heapq
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        dummy = ListNode(0)
-        tail = dummy
-        n = len(lists)
+        def merge_two(list1: [ListNode], list2: [ListNode]):
+            if not list1:
+                return list2
+            if not list2:
+                return list1
 
-        while any(lists):
-            min_val = float('inf')
-            min_idx = -1
-            for i in range(n):
-                if lists[i] and lists[i].val < min_val:
-                    min_val = lists[i].val
-                    min_idx = i
+            dummy = ListNode(0)
+            tail = dummy
+
+            while list1 and list2:
+                if list1.val <= list2.val:
+                    tail.next = list1
+                    list1 = list1.next
+                else:
+                    tail.next = list2
+                    list2 = list2.next
+                
+                tail= tail.next
             
-            tail.next = lists[min_idx]
-            tail = tail.next
-            
-            lists[min_idx] = lists[min_idx].next if lists[min_idx] else None 
+            tail.next = list1 if list1 else list2
+            return dummy.next
+
+        k = len(lists)
+        if k == 0:
+            return None
+        if k == 1:
+            return lists[0]
+
+        mid = k//2
+        
+        return merge_two(self.mergeKLists(lists[:mid]), self.mergeKLists(lists[mid:]))
 
 
-        return dummy.next
+        
