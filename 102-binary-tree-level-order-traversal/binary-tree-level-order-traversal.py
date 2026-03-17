@@ -10,23 +10,28 @@ class Solution:
         if not root:
             return []
 
-        q = deque([root])
-        results = []
-        
-        while q:
+        level_size = 0
+        result = []
 
-            level_size = len(q)
-            res = []
-            for i in range(level_size):
-
-                root = q.popleft()
-                res.append(root.val)
-
-                if root.left:
-                    q.append(root.left)
-                if root.right:
-                    q.append(root.right)
+        queue = deque([root])
+        while queue:
             
-            results.append(res)
-        
-        return results
+            res = []
+            level_size = len(queue)
+            for i in range(level_size):
+                
+                q = queue.popleft()
+                res.append(q.val)
+                
+                if q.left:
+                    queue.append(q.left)
+                if q.right:
+                    queue.append(q.right)
+             
+            result.append(res)
+        return result
+            
+
+
+
+ 
