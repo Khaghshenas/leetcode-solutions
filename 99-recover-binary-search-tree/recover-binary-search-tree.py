@@ -9,32 +9,29 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        previous_node = first = second = None
+        first = second = None
+        previous_node = None
 
-        def inorderTraversal(node):
+        def inorder_traversal(node):
             nonlocal first, second, previous_node
+
             if not node:
                 return
-            
-            inorderTraversal(node.left)
-            
-            if previous_node and previous_node.val>node.val:
-                if first:
-                    second = node
-                else:
+
+            inorder_traversal(node.left)
+
+            if previous_node and node.val < previous_node.val:
+                if not first:
                     first = previous_node
-                    second = node
-            
+                    
+                second = node
+
             previous_node = node
-
-            inorderTraversal(node.right)
+            inorder_traversal(node.right)
         
-        inorderTraversal(root)
+
+        inorder_traversal(root)
         first.val, second.val = second.val, first.val
-                
 
 
 
-
-
-        
