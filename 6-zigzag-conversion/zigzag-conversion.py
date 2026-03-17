@@ -1,25 +1,31 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         
-        if numRows==1 or len(s)<=numRows:
+        n = len(s)
+        if n <= numRows or numRows == 1:
             return s
+        
+        matrix = [["" for _ in range(n)] for _ in range(numRows)]
 
-        rows = [""]*numRows
-        going_down = False
-        current_row = 0
+        row = col = 0 
+        to_down = True
 
         for c in s:
-            rows[current_row] += c
+            matrix[row][col] = c
 
-            if current_row==0 or current_row==numRows-1:
-                going_down = not going_down
+            if row == numRows - 1:
+                to_down = False
+            elif row == 0:
+                to_down = True
 
-            if going_down:
-                current_row += 1
+            if to_down:
+                row += 1
             else:
-                current_row -= 1
-
-        result = "".join(rows)              
-        return result
-
+                row -= 1
+                col += 1
         
+        res = ""
+        for r in matrix:
+            res += ''.join(r)
+
+        return res
