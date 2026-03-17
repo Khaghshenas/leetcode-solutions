@@ -2,30 +2,33 @@ from collections import deque
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        
+        if not grid:
+            return 0
+        
+        m, n = len(grid), len(grid[0])
         islands = 0
         visited = set()
+        directions = [(-1 , 0), (1, 0), (0, 1), (0, -1)]
 
-        rows, cols = len(grid), len(grid[0])
-        directions = [(1,0), (-1,0), (0,1), (0,-1)]  # down, up, right, left
-
-        for i in range(rows):
-            for j in range(cols):
-                if grid[i][j]=="1" and (i, j) not in visited:
+        for i in range(m):
+            for j in range(n):
+                if (i, j) not in visited and grid[i][j] == "1":
                     islands += 1
-                    queue = deque([(i,j)])
+                    queue = deque([(i, j)])
                     visited.add((i, j))
 
                     while queue:
                         x, y = queue.popleft()
-                        
+
                         for dx, dy in directions:
-                            nx, ny = x + dx, y + dy
-                            if (0 <= nx < rows and 0 <= ny < cols 
-                                and grid[nx][ny] == "1" 
-                                and (nx, ny) not in visited):
-                                queue.append((nx, ny))
-                                visited.add((nx, ny))
+                            x_1, y_1 = x + dx, y + dy
+                            if 0 <= x_1 < m and 0 <= y_1 < n and grid[x_1][y_1] == "1" and (x_1, y_1) not in visited:
+                                queue.append((x_1, y_1))
+                                visited.add((x_1, y_1))
 
-        return islands
+        return islands  
 
-        
+
+
+
