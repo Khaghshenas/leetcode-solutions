@@ -3,10 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        if not nums:
+            return
+        
         n = len(nums)
         k %= n
-        #nums.reverese()
         nums[:] = nums[::-1]
         nums[:k] = nums[:k][::-1]
         nums[k:] = nums[k:][::-1]
+         
+
         
