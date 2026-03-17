@@ -13,13 +13,13 @@ class Solution:
 
         num = x * sign
         x_rev = 0
-        
+
         while num:
-            if (x_rev * 10 + num%10) > MIN and (x_rev * 10 + num%10) < MAX:
-                x_rev = x_rev * 10 + num%10
-            else:
+            if (x_rev * 10 + num%10)*sign > MAX or (x_rev * 10 + num%10)*sign < MIN:
                 return 0
-            num = num//10
+            else:
+                x_rev = x_rev * 10 + num%10
+                num = num//10
 
         return x_rev*sign
         
