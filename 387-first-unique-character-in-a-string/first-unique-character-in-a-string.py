@@ -1,18 +1,23 @@
-from collections import Counter
+#from collections import Counter
 class Solution:
     def firstUniqChar(self, s: str) -> int:
 
-        freq=Counter(s)
-        #freq = {}
-
-        #for c in s:
-        #    freq[c] = freq.get(c, 0) + 1
-
-        for i, c in enumerate(s):
-            if freq[c]==1:
-                return i
+        #count = Counter(s)
+        count = {}
         
-        return -1
+        for i, c in enumerate(s):
+            
+            if c in count:
+                x, idx = count[c]
+                count[c] = (x+1, i)
+            else:
+                count[c] = (1, i)
+        
+        for c in count:
+            x, idx = count[c]
+            if x==1:
+                return idx
 
+        return -1
 
         
