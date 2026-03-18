@@ -1,15 +1,17 @@
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        m, n = len(s), len(p)
-        dp = [[False] * (n+1) for _ in range(m+1)]
-        dp[m][n] = True
-        #dp[i][j] = True if s[i:] matches p[j:]
-        for i in range(m, -1, -1):
-            for j in range(n-1, -1, -1):
-                first_match = i < m and (s[i] == p[j] or p[j] == '.')
-                if j + 1 < n and p[j+1] == '*':
-                    dp[i][j] = dp[i][j+2] or (first_match and dp[i+1][j])
-                else:
-                    dp[i][j] = first_match and dp[i+1][j+1]
+        if not p:
+            return not s
 
-        return dp[0][0]
+        first_match = bool(s) and (s[0] == p[0] or p[0] == ".")
+
+        if len(p) >= 2 and p[1] == "*":
+
+            return (first_match and self.isMatch(s[1:], p)) or (self.isMatch(s, p[2:]))
+        
+        else:
+            return first_match and self.isMatch(s[1:], p[1:])
+                
+                
+        return match(0, 0)    
+
