@@ -13,8 +13,6 @@ class Solution:
                     return common_pref
             common_pref += c
 
-
-
         return common_pref
         
 
