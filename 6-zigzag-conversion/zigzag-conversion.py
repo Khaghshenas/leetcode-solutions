@@ -22,9 +22,7 @@ class Solution:
             else:
                 current_row -= 1
 
-        res = ""
-        for r in rows:
-            res = res + r
+        res = "".join(rows)
 
         return res
 
